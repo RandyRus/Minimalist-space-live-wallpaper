@@ -1,0 +1,621 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LostPolygon.uLiveWallpaper.Editor</name>
+    </assembly>
+    <members>
+        <member name="T:LostPolygon.uLiveWallpaper.Editor.BuildPipelineUtilities">
+            <summary>
+            Build pipeline related utility methods.
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.BuildPipelineUtilities.BuildAndroidProject(System.String,LostPolygon.uLiveWallpaper.Editor.Internal.UnityVersionedReflectionWrapper.AndroidBuildSystem,System.String[],UnityEditor.BuildOptions,System.String,System.String@,System.String[]@)">
+            <summary>
+            Builds an Android project.
+            </summary>
+            <param name="path">Project destination path.</param>
+            <param name="buildSystem">The Android build system that the created project will use.</param>
+            <param name="buildScenes">Scenes to include into build. Scene list from Build Settings will be used if this argument is set to null.</param>
+            <param name="buildOptions"><see cref="T:UnityEditor.BuildOptions" />.</param>
+            <param name="packageName">Android package name.</param>
+            <param name="unityProjectPath">The resulting ADT project may contain multiple modules.
+            This variable will contain the path to the Unity module.</param>
+            <param name="errors">Build errors that had occured during the build</param>
+            <returns>true on success, false on failure</returns>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.BuildPipelineUtilities.GetCurrentBuildOptions">
+            <summary>
+            Gets currently active <see cref="T:UnityEditor.BuildOptions"/>.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperGradleProjectUpdater">
+            <summary>
+            Builds Unity player data and updates Gradle project with it.
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperGradleProjectUpdater.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperGradleProjectUpdater"/> class.
+            </summary>
+            <param name="projectRootPath">Project root path.</param>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperGradleProjectUpdater.UpdateProject">
+            <summary>
+            Builds Unity player data and updates Android Studio project with it.
+            </summary>
+            <exception cref="T:System.OperationCanceledException"></exception>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperGradleProjectUpdater.PostProcessBuildGradleFile(System.String)">
+            <summary>
+            Applies some fixes to the Unity-generated build.gradle file.
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperGradleProjectUpdater.GetULiveWallpaperAarLocalLibraryPath">
+            <summary>
+            Gets the path to LP_uLiveWallpaper.aar library in the project.
+            </summary>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectBuilder">
+            <summary>
+            Builds a Live Wallpaper project.
+            </summary>
+        </member>
+        <member name="P:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectBuilder.BuildSystem">
+            <summary>
+            Android build system.
+            </summary>
+        </member>
+        <member name="P:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectBuilder.LiveWallpaperBuildOptions">
+            <summary>
+            Live Wallpaper build options flags.
+            </summary>
+        </member>
+        <member name="P:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectBuilder.SettingsActivityGenerationMode">
+            <summary>
+            Settings Activity generation mode.
+            </summary>
+        </member>
+        <member name="P:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectBuilder.LauncherShortcutGenerationMode">
+            <summary>
+            Launcher Shortcut generation mode.
+            </summary>
+        </member>
+        <member name="P:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectBuilder.SettingsActivityName">
+            <summary>
+            Settings Activity name. Default is "SettingsActivity".
+            </summary>
+        </member>
+        <member name="P:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectBuilder.UnityProjectPath">
+            <summary>
+            Unity project path. May not match <see cref="P:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectBuilder.UnityProjectPath"/> when project has multiple modules.
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectBuilder.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectBuilder"/> class.
+            </summary>
+            <param name="projectRootPath">Destination project root path.</param>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectBuilder.BuildProject">
+            <summary>
+            Builds and post-processes the Android project.
+            </summary>
+            <exception cref="T:System.OperationCanceledException"></exception>
+            <exception cref="T:System.IO.FileNotFoundException">AndroidManifest.xml not found in Android project</exception>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectBuilder.BuildInitialProject">
+            <summary>
+            Builds the initial project.
+            </summary>
+            <returns>true on success, false on error.</returns>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectBuilder.PostProcessProject">
+            <summary>
+            Post-processes the Android project to actually make it a Live Wallpaper project.
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectBuilder.RemoveUnityActivitiesFromManifest">
+            <summary>
+            Removes references to Unity Activities from AndroidManifest.xml.
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectBuilder.AddActivityElementToManifest(System.String)">
+            <summary>
+            Adds Settings Activity element to &lt;application&gt; element in AndroidManifest.xml.
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectBuilder.AddSettingsActivityElementToManifest">
+            <summary>
+            Adds Settings Activity element to &lt;application&gt; element in AndroidManifest.xml.
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectBuilder.AddActivityJava(System.String,System.String)">
+            <summary>
+            Adds the Settings Activity .java source file to the project.
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectBuilder.AddSettingsActivityJava(System.String)">
+            <summary>
+            Adds the Settings Activity .java source file to the project.
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectBuilder.AddPreferencesXml">
+            <summary>
+            Adds the Preferences definition to "res/xml".
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectBuilder.InjectStringsToStringsXml">
+            <summary>
+            Adds strings to "/res/values/strings.xml".
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectBuilder.InjectLiveWallpaper">
+            <summary>
+            Injects necessary files and info into project to make it a Live Wallpaper project.
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectBuilder.AddWallpaperXml">
+            <summary>
+            Adds the wallpaper definition XML to "res/xml".
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectBuilder.AddServiceNodeToManifest">
+            <summary>
+            Adds the wallpaper service node to &lt;application&gt; node in AndroidManifest.xml.
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectBuilder.AddWallpaperServiceJava">
+            <summary>
+            Adds the wallpaper service .java source file to the project.
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectBuilder.FixAdtProjectProperties">
+            <summary>
+            Modifies the ADT project.properties file.
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectBuilder.PostProcessBuildGradleFile">
+            <summary>
+            Applies some fixes to the Unity-generated build.gradle file.
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectBuilder.RemoveUnityActivitiesSource(System.String)">
+            <summary>
+            Removes Java source files of Unity Activities.
+            </summary>
+            <param name="projectPath">The project path.</param>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectBuilder.GetJavaSourcePathInProject">
+            <summary>
+            Gets path to the Java source files location for current package.
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectBuilder.InsertXmlToDocument(System.Xml.XmlDocument,System.String,System.String)">
+            <summary>
+            Inserts raw XML fragment to <see cref="T:System.Xml.XmlDocument"/>.
+            </summary>
+            <param name="document">The document.</param>
+            <param name="xmlFragment">XML fragment to insert.</param>
+            <param name="parentNodeName">Name of the node to which the <paramref name="xmlFragment"/> will be inserted.</param>
+            <exception cref="T:System.IO.InvalidDataException"></exception>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectBuilder.LiveWallpaperBuildOptionsFlags">
+            <summary>
+            Live Wallpaper project build options. Options can be combined together.
+            </summary>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectBuilder.LiveWallpaperSettingsActivityGenerationMode">
+            <summary>
+            Settings Activity generation mode.
+            </summary>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectBuilder.LiveWallpaperLauncherShortcutGenerationMode">
+            <summary>
+            Launcher shortcut generation mode.
+            </summary>
+        </member>
+        <member name="E:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectManipulatorBase.StagingProjectBuildFinished">
+            <summary>
+            Called when staging project build has finished.
+            </summary>
+        </member>
+        <member name="P:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectManipulatorBase.BuildOptions">
+            <summary>
+            <see cref="T:UnityEditor.BuildOptions"/> for Unity player.
+            </summary>
+        </member>
+        <member name="P:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectManipulatorBase.BuildScenes">
+            <summary>
+            Scenes to include into build. Scene list from Build Settings will be used if this iss et to null.
+            </summary>
+        </member>
+        <member name="P:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectManipulatorBase.ProjectRootPath">
+            <summary>
+            Destination project root path.
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectManipulatorBase.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectManipulatorBase"/> class.
+            </summary>
+            <param name="projectRootPath">Project root path.</param>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectManipulatorBase.InvokeStagingProjectBuildFinished">
+            <summary>
+            Invokes the <see cref="E:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperProjectManipulatorBase.StagingProjectBuildFinished"/> event.
+            </summary>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.Editor.Internal.ProjectDataExtractor">
+            <summary>
+            Utilities for analyzing the project directory and retrieving data from the project.
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.Internal.ProjectDataExtractor.ExtractProjectData(System.String)">
+            <summary>
+            Analyzes the project directory and extracts data regarding
+            important files and directories in the project.
+            </summary>
+            <param name="projectPath">
+            Project path.
+            </param>
+            <returns>
+            <see cref="T:LostPolygon.uLiveWallpaper.Editor.Internal.ProjectDataExtractor.ProjectData"/> of <paramref name="projectPath"/>.
+            </returns>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.Internal.ProjectDataExtractor.GetProjectType(System.String)">
+            <summary>
+            Analyzes the project and returns the <see cref="T:LostPolygon.uLiveWallpaper.Editor.AndroidBuildSystem"/>.
+            </summary>
+            <param name="projectPath">
+            The project path.
+            </param>
+            <returns>
+            The <see cref="T:LostPolygon.uLiveWallpaper.Editor.AndroidBuildSystem"/>.
+            </returns>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.Internal.ProjectDataExtractor.ExtractProjectDataFromGradleProject(System.String)">
+            <summary>
+            Analyzes the Android Studio project directory and extracts data regarding
+            important files and directories in the project.
+            </summary>
+            <param name="projectPath">
+            Project path.
+            </param>
+            <returns>
+            <see cref="T:LostPolygon.uLiveWallpaper.Editor.Internal.ProjectDataExtractor.ProjectData"/> of <paramref name="projectPath"/>.
+            </returns>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.Internal.ProjectDataExtractor.ExtractProjectDataFromAdtProject(System.String)">
+            <summary>
+            Analyzes the ADT project directory and extracts data regarding
+            important files and directories in the project.
+            </summary>
+            <param name="projectPath">
+            Project path.
+            </param>
+            <returns>
+            <see cref="T:LostPolygon.uLiveWallpaper.Editor.Internal.ProjectDataExtractor.ProjectData"/> of <paramref name="projectPath"/>.
+            </returns>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.Editor.Internal.Constants">
+            <summary>
+            Shared constants.
+            </summary>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.Editor.Internal.EditorGUIStyles">
+            <summary>
+            GUI styles to be used in editor GUIs.
+            </summary>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.Editor.Internal.EditorResourcesManager">
+            <summary>
+            Helper class for managing resources in Editor code.
+            </summary>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.Editor.Internal.LiveWallpaperUnityEventsExecutionOrderHelper">
+            <summary>
+            Makes sure <seealso cref="!:LiveWallpaperUnityMessagesForwarder"/> is executed as early as possible.
+            </summary>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.Editor.Internal.ProjectSettingsContainer">
+            <summary>
+            Contains <see cref="T:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperBuildWindow"/> state and current project settings.
+            </summary>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.Editor.Internal.EditorGUIExtensions">
+            <summary>
+            Extensions of EditorGUI.
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.Internal.EditorGUIExtensions.SetLinkRect(UnityEngine.Rect,System.String)">
+            <summary>
+            Setups the rect to act as a hyperlink.
+            </summary>
+            <param name="rect">
+            Link <see cref="T:UnityEngine.Rect"/>.
+            </param>
+            <param name="url">
+            The URL.
+            </param>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.Editor.Internal.EditorGUILayoutExtensions">
+            <summary>
+            Extensions of EditorGUILayout.
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.Internal.EditorGUILayoutExtensions.EnumPopup(System.String,System.Enum,System.String[])">
+            <summary>
+            A versions of <see cref="M:EditorGUILayout.EnumPopup"/>
+            that allows to provide custom text for enum values.
+            </summary>
+            <param name="label">
+            Field lable.
+            </param>
+            <param name="selected">
+            Current value of the enum.
+            </param>
+            <param name="valuesText">
+            Corresponding text for the values, to be shown in the popup.
+            </param>
+            <returns>
+            The <see cref="T:System.Enum"/>.
+            </returns>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.Internal.EditorGUILayoutExtensions.BeginHorizontalCenter(UnityEngine.GUIStyle,UnityEngine.GUILayoutOption[])">
+            <summary>
+            Begins horizontal centering group.
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.Internal.EditorGUILayoutExtensions.EndHorizontalCenter">
+            <summary>
+            Ends horizontal centering group.
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.Internal.EditorGUILayoutExtensions.HelpBox(System.String,UnityEditor.MessageType,UnityEngine.GUIStyle,UnityEngine.GUILayoutOption[])">
+            <summary>
+            A more customizable version of <see cref="M:EditorGUILayout.HelpBox" />.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="type">The message type.</param>
+            <param name="messageStyle">The <see cref="T:UnityEngine.GUIStyle" /> to use for the <paramref name="message" />.</param>
+            <param name="options">The options.</param>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.Internal.EditorGUILayoutExtensions.HelpBox(System.String,UnityEditor.MessageType,UnityEngine.GUIStyle,System.Action,UnityEngine.GUILayoutOption[])">
+            <summary>
+            A more customizable version of <see cref="M:EditorGUILayout.HelpBox" />.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="type">The message type.</param>
+            <param name="messageStyle">The <see cref="T:UnityEngine.GUIStyle" /> to use for the <paramref name="message" />.</param>
+            <param name="userDraw">Delegate called after drawing the text.</param>
+            <param name="options">The options.</param>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.Editor.Internal.EditorGUIUtilityExposed">
+            <summary>
+            Exposes non-public members of <see cref="T:UnityEditor.EditorGUIUtility"/> via reflection.
+            </summary>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.Editor.Internal.EditorUtilities">
+            <summary>
+            Editor-related utility methods.
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.Internal.EditorUtilities.GetCurrentBuildScenes">
+            <summary>
+            Returns current build scenes. Correctly handles the case when no scenes are added to Build Settings.
+            </summary>
+            <returns>
+            The list of current build scenes.
+            </returns>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.Editor.Internal.EnumExtensions">
+            <summary>
+            Utilities for working with enums.
+            </summary>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.Editor.Internal.IDictionaryExtensions">
+            <summary>
+            Utilities for working with dictionaries.
+            </summary>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.Editor.Internal.IOUtilities">
+            <summary>
+            IO related utility methods.
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.Internal.IOUtilities.MoveDirectoryContents(System.String,System.String,System.Boolean)">
+            <summary>
+            Moves all contents of <paramref name="sourceDirectoryPath"/> directory into <paramref name="destinationDirectoryPath"/> directory.
+            </summary>
+            <param name="sourceDirectoryPath">
+            The source directory.
+            </param>
+            <param name="destinationDirectoryPath">
+            The destination directory.
+            </param>
+            <param name="overwrite">
+            Whether to overwrite existing files;
+            </param>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.Internal.IOUtilities.MoveDirectory(System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Moves <paramref name="sourceDirectoryPath"/> directory into <paramref name="destinationDirectoryPath"/> directory.
+            </summary>
+            <param name="sourceDirectoryPath">
+            The source directory.
+            </param>
+            <param name="destinationDirectoryPath">
+            The destination directory.
+            </param>
+            <param name="recursive">
+            Whether to move sub-directories as well.
+            </param>
+            <param name="overwrite">
+            Whether to overwrite existing files;
+            </param>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.Internal.IOUtilities.CopyDirectory(System.String,System.String,System.Boolean)">
+            <summary>
+            Copies <paramref name="sourceDirectoryPath"/> directory into <paramref name="destinationDirectoryPath"/> directory.
+            </summary>
+            <param name="sourceDirectoryPath">
+            The source directory.
+            </param>
+            <param name="destinationDirectoryPath">
+            The destination directory.
+            </param>
+            <param name="recursive">
+            Whether to copy sub-directories as well.
+            </param>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.Internal.IOUtilities.MoveFile(System.String,System.String,System.Boolean)">
+            <summary>
+            Moves <paramref name="sourcePath"/> file to <paramref name="destinationPath"/>.
+            </summary>
+            <param name="sourcePath">
+            The source file path.
+            </param>
+            <param name="destinationPath">
+            The destination file path.
+            </param>
+            <param name="overwrite">
+            Whether to overwrite existing files.
+            </param>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.Internal.IOUtilities.IsDirectoryEmpty(System.String)">
+            <summary>
+            Checks whether the directory is empty.
+            </summary>
+            <param name="directoryPath">
+            The directory path.
+            </param>
+            <returns>
+            Whether the directory is empty.
+            </returns>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.Internal.IOUtilities.IsDirectory(System.String)">
+            <summary>
+            Checks whether the provided path correspond to a directory.
+            </summary>
+            <param name="directoryPath">
+            The directory path.
+            </param>
+            <returns>
+            Whether the provided path correspond to a directory.
+            </returns>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.Internal.IOUtilities.DeleteFileIfExists(System.String)">
+            <summary>
+            Checks whether the file exists, and deletes it if it does.
+            </summary>
+            <param name="path">
+            The path.
+            </param>
+            <returns>
+            Whether the file existed.
+            </returns>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.Internal.IOUtilities.DeleteDirectoryIfExists(System.String,System.Boolean)">
+            <summary>
+            Checks whether the directory exists, and deletes it if it does.
+            </summary>
+            <param name="path">
+            The path.
+            </param>
+            <param name="recursive">
+            Whether to delete the folder recursively.
+            </param>
+            <returns>
+            Whether the directory existed.
+            </returns>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.Internal.IOUtilities.WriteAllTextUtf8NoBom(System.String,System.String)">
+            <summary>
+            Writes a string to file using UTF-8 encoding with no BOM.
+            </summary>
+            <param name="path">
+            The path to save to.
+            </param>
+            <param name="contents">
+            The contents.
+            </param>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.Internal.IOUtilities.AttemptPotentiallyFailingOperation(System.Action,System.Int32,System.Int32)">
+            <summary>
+            Attempts to execute <paramref name="action"/> <paramref name="maxAttempts"/> number of times with pauses between attempts.
+            Rethrows the original exception if attemps are depleted.
+            </summary>
+            <param name="action">Action to execute.</param>
+            <param name="maxAttempts">Maximum amount of attempts before throwing an exception.</param>
+            <param name="delayBetweenAttempts">Delay between attempts.</param>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.Internal.PathUtilities.Combine(System.String[])">
+            <summary>
+            Combines file system paths correctly.
+            </summary>
+            <param name="paths">
+            The paths to combine.
+            </param>
+            <returns>
+            The resulting combined path.
+            </returns>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.Internal.PathUtilities.FixPathSlashes(System.String)">
+            <summary>
+            Replaces slashes in a path with correct for current OS.
+            </summary>
+            <param name="path">
+            The path.
+            </param>
+            <returns>
+            The corrected path.
+            </returns>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.Internal.PathUtilities.GetTempFilePath(System.String)">
+            <summary>
+            Returns a name of temporary file in project's Temp directory.
+            </summary>
+            <returns>
+            The <see cref="T:System.String"/>.
+            </returns>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.Editor.Internal.UnityVersionedReflectionWrapper">
+            <summary>
+            Utilities for handling Unity API version differences.
+            </summary>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.Editor.Internal.UnityVersionedReflectionWrapper.EditorUserBuildSettings">
+            <summary>
+            Wrapper for Unity 5.5+ <c>EditorUserBuildSettings.androidBuildSystem</c>.
+            </summary>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.Editor.Internal.UnityVersionedReflectionWrapper.AndroidBuildSystem">
+            <summary>Type of Android build system.</summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Editor.Internal.XmlUtilities.SaveAsUtf8(System.Xml.XmlDocument,System.String,System.Boolean)">
+            <summary>
+            Writes the document to file using UTF-8 encoding with no BOM.
+            </summary>
+            <param name="xmlDocument">
+            The <see cref="T:System.Xml.XmlDocument"/> to write.
+            </param>
+            <param name="filePath">
+            The file path.
+            </param>
+            <param name="reindent">
+            Whether to re-indent the XML before writing.
+            </param>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperBuildGuiUtility">
+            <summary>
+            User interface and related utility methods.
+            </summary>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.Editor.LiveWallpaperBuildWindow">
+            <summary>
+            Main uLiveWallpaper window.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,20 @@
+﻿-keep class com.lostpolygon.unity.livewallpaper.LiveWallpaperUnityFacade { public *; }
+-keep class com.lostpolygon.unity.livewallpaper.LiveWallpaperUnityFacade$PreferenceEditorFacade { public *; }
+-keep class com.lostpolygon.unity.livewallpaper.LiveWallpaperUnityFacade$WallpaperEngineFacade { public *; }
+-keep class com.lostpolygon.unity.livewallpaper.ILiveWallpaperEventsListener { public *; }
+-keep class com.lostpolygon.unity.livewallpaper.UnityEventsProxy { public *; }
+-keep class com.lostpolygon.unity.livewallpaper.UnityWallpaperService { public *; protected *; }
+-keep class com.lostpolygon.unity.livewallpaper.UnityWallpaperService$UnityWallpaperEngine
+-keep class com.lostpolygon.unity.livewallpaper.LiveWallpaperUtility  { public *; }
+
+-keep class com.lostpolygon.unity.livewallpaper.activities.LiveWallpaperCompatibleUnityPlayerActivity { public *; protected *; }
+-keep class com.lostpolygon.unity.livewallpaper.activities.LiveWallpaperCompatibleUnityPlayerActivity$UnityPlayerPauseEventType { *; }
+-keep class com.lostpolygon.unity.livewallpaper.activities.LiveWallpaperCompatibleUnityPlayerActivity$UnityPlayerResumeEventType { *; }
+
+-keep class com.lostpolygon.unity.androidintegration.UnityPlayerHolder { public *; protected *; }
+-keep class com.lostpolygon.unity.androidintegration.UnityPlayerInstantiatorActivity { public *; }
+-keep class com.lostpolygon.unity.androidintegration.UnityPlayerInstanceManager  { public *; }
+-keep class com.lostpolygon.unity.androidintegration.MultiTapDetector { public *; }
+
+-keepattributes InnerClasses
+-keepattributes EnclosingMethod

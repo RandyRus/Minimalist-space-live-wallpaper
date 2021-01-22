@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: 2b986acf744f755428c0d9110e114994
+timeCreated: 1543706255
+licenseType: Store
+PluginImporter:
+  serializedVersion: 1
+  iconMap: {}
+  executionOrder:
+    LostPolygon.uLiveWallpaper.Internal.LiveWallpaperUnityMessagesForwarder: 20000
+  isPreloaded: 0
+  platformData:
+    Any:
+      enabled: 0
+      settings: {}
+    Editor:
+      enabled: 1
+      settings:
+        DefaultValueInitialized: true
+    WindowsStoreApps:
+      enabled: 0
+      settings:
+        CPU: AnyCPU
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

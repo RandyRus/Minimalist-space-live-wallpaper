@@ -1,0 +1,579 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LostPolygon.uLiveWallpaper.Runtime.Android</name>
+    </assembly>
+    <members>
+        <member name="T:LostPolygon.uLiveWallpaper.Internal.AndroidJavaUtilities">
+            <summary>
+            Utility methods for working with Android Java objects.
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Internal.AndroidJavaUtilities.IsNull(UnityEngine.AndroidJavaObject)">
+            <summary>
+            Returns whether <paramref name="androidJavaObject"/> is actually null,
+            whether on C# or on Java level.
+            </summary>
+            <param name="androidJavaObject">The <see cref="T:UnityEngine.AndroidJavaObject"/> to be checked against null.</param>
+            <returns>true if <paramref name="androidJavaObject"/> is null, false otherwise.</returns>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Internal.AndroidJavaUtilities.IsNull(UnityEngine.AndroidJavaClass)">
+            <summary>
+            Returns whether <paramref name="androidJavaClass"/> is actually null,
+            whether on C# or on Java level.
+            </summary>
+            <param name="androidJavaClass">The <see cref="T:UnityEngine.AndroidJavaClass"/> to be checked against null.</param>
+            <returns>true if <paramref name="androidJavaClass"/> is null, false otherwise.</returns>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.Internal.LiveWallpaperUnityMessagesForwarder">
+            <summary>
+            Provides static access to global Unity messages.
+            </summary>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.Internal.SingletonMonoBehaviour`1">
+            <summary>
+            A reliable singleton implementation for <seealso cref="T:UnityEngine.MonoBehaviour" />. Makes sure only one instance ever exists.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <seealso cref="T:UnityEngine.MonoBehaviour" />
+        </member>
+        <member name="P:LostPolygon.uLiveWallpaper.Internal.SingletonMonoBehaviour`1.Instance">
+            <summary>
+            A reference to singleton instance.
+            </summary>
+        </member>
+        <member name="P:LostPolygon.uLiveWallpaper.Internal.SingletonMonoBehaviour`1.IsDestroyed">
+            <summary>
+            Gets a value indicating whether this instance is in process of being destroyed.
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.Internal.SingletonMonoBehaviour`1.UpdateInstance">
+            <summary>
+            Tries to find an existing instance in the scene,
+            and creates one if there were none.
+            </summary>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.Editor.Internal.Constants">
+            <summary>
+            Shared constants.
+            </summary>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.ILiveWallpaperOffsetEmulator">
+            <summary>
+            Implement this interface to implement a wallpaper offset emulator.
+            </summary>
+        </member>
+        <member name="P:LostPolygon.uLiveWallpaper.ILiveWallpaperOffsetEmulator.IsOffsetChangedWorking">
+            <summary>
+            Gets a value indicating whether current launcher correctly reports wallpaper offset data.
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.ILiveWallpaperOffsetEmulator.OnRegister(LostPolygon.uLiveWallpaper.LiveWallpaper.Emulation.SetWallpaperOffsetCallback)">
+            <summary>
+            Called after this emulator was registered as an active emulator.
+            </summary>
+            <param name="setWallpaperOffset">The callback to apply the wallpaper offset data.</param>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.ILiveWallpaperOffsetEmulator.OnUnregister">
+            <summary>
+            Called before this emulator was unregistered from being an active emulator.
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.ILiveWallpaperOffsetEmulator.UpdateState(System.Single)">
+            <summary>
+            Generic Update event.
+            </summary>
+            <param name="deltaTime">The delta time.</param>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.ILiveWallpaperOffsetEmulator.HandleOffsetChange(LostPolygon.uLiveWallpaper.LiveWallpaper.WallpaperOffsetData@)">
+            <summary>
+            Postprocesses the wallpaper offset change event that came from Java side.
+            </summary>
+            <param name="offset">The offset.</param>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.InvalidPreferenceTypeException">
+            <summary>
+            This exception is thrown when stored preference is different than type it was attempted to get as.
+            </summary>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.LiveWallpaper">
+            <summary>
+            Main uLiveWallpaper class. Enables access to wallpaper-related APIs.
+            </summary>
+        </member>
+        <member name="F:LostPolygon.uLiveWallpaper.LiveWallpaper.kFacadeClassName">
+            <summary>
+            Fully qualified name of main plugin facade Java class.
+            </summary>
+        </member>
+        <member name="F:LostPolygon.uLiveWallpaper.LiveWallpaper.kLiveWallpaperEventsListenerInterfaceName">
+            <summary>
+            Fully qualified name of ILiveWallpaperEventsListener Java interface.
+            </summary>
+        </member>
+        <member name="F:LostPolygon.uLiveWallpaper.LiveWallpaper._facadeObject">
+            <summary>
+            A reference to the Java LiveWallpaperFacade object.
+            </summary>
+        </member>
+        <member name="F:LostPolygon.uLiveWallpaper.LiveWallpaper._preferencesEditorFacadeObject">
+            <summary>
+            A reference to the Java LiveWallpaperFacade.PreferencesEditorFacade object.
+            </summary>
+        </member>
+        <member name="F:LostPolygon.uLiveWallpaper.LiveWallpaper._multiTapDetectorObject">
+            <summary>
+            A reference to the Java MultiTapDetector object.
+            </summary>
+        </member>
+        <member name="F:LostPolygon.uLiveWallpaper.LiveWallpaper._unityEventsProxyObject">
+            <summary>
+            A reference to the Java UnityEventsProxy object.
+            </summary>
+        </member>
+        <member name="F:LostPolygon.uLiveWallpaper.LiveWallpaper._isFacadeObjectAvailable">
+            <summary>
+            Whether the LiveWallpaperMediator is available and was loaded successfully.
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.LiveWallpaper.#cctor">
+            <summary>
+            Initializes <see cref="T:LostPolygon.uLiveWallpaper.LiveWallpaper"/> class.
+            Retrieves required Java objects.
+            </summary>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.LiveWallpaper.Emulation">
+            <summary>
+            Provides access to features allowing to override current LiveWallpaper state.
+            </summary>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.LiveWallpaper.Emulation.SetWallpaperOffsetCallback">
+            <summary>
+            Delegate callback, used by <seealso cref="T:LostPolygon.uLiveWallpaper.ILiveWallpaperOffsetEmulator"/> to set the wallpaper offset.
+            </summary>
+            <param name="wallpaperOffset">The wallpaper offset.</param>
+        </member>
+        <member name="F:LostPolygon.uLiveWallpaper.LiveWallpaper.Emulation._emulator">
+            <summary>
+            Currently active wallpaper offset emulator.
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.LiveWallpaper.Emulation.GetWallpaperOffsetEmulator">
+            <summary>
+            Gets current wallpaper offset emulator.
+            </summary>
+            <returns>Current wallpaper offset emulator, or null if none is set.</returns>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.LiveWallpaper.Emulation.SetWallpaperOffsetEmulator(LostPolygon.uLiveWallpaper.ILiveWallpaperOffsetEmulator)">
+            <summary>
+            Sets the wallpaper offset emulator.
+            If another emulator was registered at the moment of the call,
+            it is immediately unregistered.
+            </summary>
+            <param name="emulator">The emulator instance, or null to unregister any current emulator.</param>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.LiveWallpaper.Emulation.PostprocessOffsetChange(LostPolygon.uLiveWallpaper.LiveWallpaper.WallpaperOffsetData@)">
+            <summary>
+            Postprocesses the wallpaper offset change event that came from Java side.
+            </summary>
+            <param name="offset">The offset.</param>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.LiveWallpaper.Emulation.UnityUpdate(System.Single)">
+            <summary>
+            Called on Update().
+            </summary>
+            <param name="deltaTime">The time delta.</param>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.LiveWallpaper.Emulation.UnregisterWallpaperOffsetEmulator">
+            <summary>
+            Unregisters current wallpaper offset emulator, if any.
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.LiveWallpaper.Emulation.SetWallpaperOffset(LostPolygon.uLiveWallpaper.LiveWallpaper.WallpaperOffsetData)">
+            <summary>
+            Used as callback for <seealso cref="T:LostPolygon.uLiveWallpaper.LiveWallpaper.Emulation.SetWallpaperOffsetCallback"/>.
+            </summary>
+            <param name="wallpaperOffset">The wallpaper offset.</param>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.LiveWallpaper.VisibilityChangedHandler">
+            <summary>
+            Delegate for event <see cref="E:LostPolygon.uLiveWallpaper.LiveWallpaper.VisibilityChanged"/>.
+            </summary>
+            <param name="isVisible">Whether the wallpaper became visible or hidden.</param>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.LiveWallpaper.OffsetsChangedHandler">
+            <summary>
+            Delegate for event <see cref="E:LostPolygon.uLiveWallpaper.LiveWallpaper.OffsetsChanged"/>.
+            </summary>
+            <param name="offset">Normalized offset. Values range from 0 to 1, with 0.5 being at center.</param>
+            <param name="offsetStep">Normalized offset step. Values range from 0 to 1.</param>
+            <param name="pixelOffset">Pixel offset. Values are in pixels.</param>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.LiveWallpaper.DesiredSizeChangedHandler">
+            <summary>
+            Delegate for event <see cref="E:LostPolygon.uLiveWallpaper.LiveWallpaper.DesiredSizeChanged"/>.
+            </summary>
+            <param name="desiredWidth">Desired wallpaper width.</param>
+            <param name="desiredHeight">Desired wallpaper height.</param>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.LiveWallpaper.IsPreviewChangedHandler">
+            <summary>
+            Delegate for event <see cref="E:LostPolygon.uLiveWallpaper.LiveWallpaper.IsPreviewChanged"/>.
+            </summary>
+            <param name="isPreview">Whether the wallpaper has entered or exited the preview mode.</param>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.LiveWallpaper.PreferenceChangedHandler">
+            <summary>
+            Delegate for event <see cref="E:LostPolygon.uLiveWallpaper.LiveWallpaper.PreferenceChanged"/>.
+            </summary>
+            <param name="key">Key of the changed preference.</param>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.LiveWallpaper.PreferenceActivityTriggeredHandler">
+            <summary>
+            Delegate for event <see cref="E:LostPolygon.uLiveWallpaper.LiveWallpaper.PreferenceActivityTriggered"/>.
+            </summary>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.LiveWallpaper.MultiTapDetectedHandler">
+            <summary>
+            Delegate for event <see cref="E:LostPolygon.uLiveWallpaper.LiveWallpaper.MultiTapDetected"/>.
+            </summary>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.LiveWallpaper.CustomEventReceivedHandler">
+            <summary>
+            Delegate for event <see cref="E:LostPolygon.uLiveWallpaper.LiveWallpaper.CustomEventReceived"/>.
+            </summary>
+        </member>
+        <member name="E:LostPolygon.uLiveWallpaper.LiveWallpaper.VisibilityChanged">
+            <summary>
+            Called when wallpaper became visible or hidden.
+            </summary>
+        </member>
+        <member name="E:LostPolygon.uLiveWallpaper.LiveWallpaper.OffsetsChanged">
+            <summary>
+            Called when wallpaper offsets had changed.
+            </summary>
+        </member>
+        <member name="E:LostPolygon.uLiveWallpaper.LiveWallpaper.IsPreviewChanged">
+            <summary>
+            Called when wallpaper has entered or exited the preview mode.
+            </summary>
+        </member>
+        <member name="E:LostPolygon.uLiveWallpaper.LiveWallpaper.DesiredSizeChanged">
+            <summary>
+            Called when wallpaper desired size changed.
+            </summary>
+        </member>
+        <member name="E:LostPolygon.uLiveWallpaper.LiveWallpaper.PreferenceChanged">
+            <summary>
+            Called when a preference had changed.
+            </summary>
+        </member>
+        <member name="E:LostPolygon.uLiveWallpaper.LiveWallpaper.PreferenceActivityTriggered">
+            <summary>
+            Called when live wallpaper preferences Activity has started.
+            </summary>
+        </member>
+        <member name="E:LostPolygon.uLiveWallpaper.LiveWallpaper.MultiTapDetected">
+            <summary>
+            Called when a quick sequence of taps was detected.
+            </summary>
+            <see cref="T:LostPolygon.uLiveWallpaper.LiveWallpaper.MultiTapDetector"/>
+        </member>
+        <member name="E:LostPolygon.uLiveWallpaper.LiveWallpaper.CustomEventReceived">
+            <summary>
+            Called when a custom event has been received.
+            Event can be sent from Java with a code
+            <c>LiveWallpaperUnityFacade.getEventsProxy().customEvent("somethingHappened", "some event data");</c>
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.LiveWallpaper.AttachEvents">
+            <summary>
+            Attaches the Java events listener and gets current event state.
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.LiveWallpaper.DispatchDeferredEvents">
+            <summary>
+            Dispatches the recorded events.
+            </summary>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.LiveWallpaper.LiveWallpaperJavaEventsListener">
+            <summary>
+            An implementation of the Java interface that listens to the events from Java side.
+            </summary>
+            <seealso cref="T:UnityEngine.AndroidJavaProxy" />
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.LiveWallpaper.GetApplicationContext">
+            <summary>
+            Gets the Android Application Context.
+            </summary>
+            <returns>Application Context, or null on error.</returns>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.LiveWallpaper.GetDefaultLauncherPackageName">
+            <summary>
+            Gets the package name of current default launcher.
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.LiveWallpaper.StartDefaultSettingsActivity">
+            <summary>
+            Attempts to start the Settings Activity named <c>SettingsActivity</c>.
+            </summary>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.LiveWallpaper.StartActivity(System.String)">
+            <summary>
+            Starts an Android Activity using the Application Context.
+            </summary>
+            <param name="activityClassName">Fully qualified name of the Activity class.</param>
+            <seealso cref="M:LostPolygon.uLiveWallpaper.LiveWallpaper.GetApplicationContext"/>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.LiveWallpaper.OpenPreviewScreen">
+            <summary>
+            Opens the live wallpaper preview screen.
+            </summary>
+            <seealso cref="M:LostPolygon.uLiveWallpaper.LiveWallpaper.GetApplicationContext"/>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.LiveWallpaper.GetCurrentWallpaperPackageName">
+            <summary>
+            Gets the package name of the currently set live wallpaper.
+            </summary>
+            <returns>Package name of the currently set live wallpaper, or null if no live wallpaper is set.</returns>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.LiveWallpaper.OpenURL(System.String)">
+            <summary>
+            Opens the URL using Android API.
+            </summary>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.LiveWallpaper.Preferences">
+            <summary>
+            Provides access to Android preferences.
+            </summary>
+            <remarks>
+            Before editing any values, <see cref="M:LostPolygon.uLiveWallpaper.LiveWallpaper.Preferences.StartEditing"/> must be called.
+            You must call <see cref="M:LostPolygon.uLiveWallpaper.LiveWallpaper.Preferences.FinishEditing"/> to submit the changes after you've finished editing,
+            other your actions will have no effect.
+            </remarks>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.LiveWallpaper.Preferences.StartEditing">
+            <summary>
+            Starts preference editing session.
+            </summary>
+            <returns>true, if session was started successfully, false if session was already started, or on error.</returns>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.LiveWallpaper.Preferences.FinishEditing">
+            <summary>
+            Closes the preference editing session and saves changes to storage.
+            </summary>
+            <returns>true, if session was closed successfully, false if no session was started, or on error.</returns>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.LiveWallpaper.Preferences.HasKey(System.String)">
+            <summary>
+            Checks whether the preferences contains a preference.
+            </summary>
+            <param name="key">Preference key to check.</param>
+            <returns>true if the preference exists, false otherwise.</returns>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.LiveWallpaper.Preferences.GetBool(System.String,System.Boolean)">
+            <summary>
+            Retrieves a value from the preferences.
+            </summary>
+            <param name="key">Preference key.</param>
+            <param name="defaultValue">Value to be returned if preference had no value, or on error.</param>
+            <returns>Value of the preference with key <paramref name="key"/>,
+            <paramref name="defaultValue"/> if preference is not set, or on error.</returns>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.LiveWallpaper.Preferences.GetInt(System.String,System.Int32)">
+            <summary>
+            Retrieves a value from the preferences.
+            </summary>
+            <param name="key">Preference key.</param>
+            <param name="defaultValue">Value to be returned if preference had no value, or on error.</param>
+            <returns>Value of the preference with key <paramref name="key"/>,
+            <paramref name="defaultValue"/> if preference is not set, or on error.</returns>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.LiveWallpaper.Preferences.GetLong(System.String,System.Int64)">
+            <summary>
+            Retrieves a value from the preferences.
+            </summary>
+            <param name="key">Preference key.</param>
+            <param name="defaultValue">Value to be returned if preference had no value, or on error.</param>
+            <returns>Value of the preference with key <paramref name="key"/>,
+            <paramref name="defaultValue"/> if preference is not set, or on error.</returns>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.LiveWallpaper.Preferences.GetFloat(System.String,System.Single)">
+            <summary>
+            Retrieves a value from the preferences.
+            </summary>
+            <param name="key">Preference key.</param>
+            <param name="defaultValue">Value to be returned if preference had no value, or on error.</param>
+            <returns>Value of the preference with key <paramref name="key"/>,
+            <paramref name="defaultValue"/> if preference is not set, or on error.</returns>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.LiveWallpaper.Preferences.GetString(System.String,System.String)">
+            <summary>
+            Retrieves a value from the preferences.
+            </summary>
+            <param name="key">Preference key.</param>
+            <param name="defaultValue">Value to be returned if preference had no value, or on error.</param>
+            <returns>Value of the preference with key <paramref name="key"/>,
+            <paramref name="defaultValue"/> if preference is not set, or on error.</returns>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.LiveWallpaper.Preferences.SetBool(System.String,System.Boolean)">
+            <summary>
+            Sets a preference value.
+            </summary>
+            <param name="key">Preference key.</param>
+            <param name="value">Value to be written into preference.</param>
+            <returns>true on success, false if editing session has not been started, on error.</returns>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.LiveWallpaper.Preferences.SetInt(System.String,System.Int32)">
+            <summary>
+            Sets a preference value.
+            </summary>
+            <param name="key">Preference key.</param>
+            <param name="value">Value to be written into preference.</param>
+            <returns>true on success, false if editing session has not been started, on error.</returns>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.LiveWallpaper.Preferences.SetLong(System.String,System.Int64)">
+            <summary>
+            Sets a preference value.
+            </summary>
+            <param name="key">Preference key.</param>
+            <param name="value">Value to be written into preference.</param>
+            <returns>true on success, false if editing session has not been started, on error.</returns>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.LiveWallpaper.Preferences.SetFloat(System.String,System.Single)">
+            <summary>
+            Sets a preference value.
+            </summary>
+            <param name="key">Preference key.</param>
+            <param name="value">Value to be written into preference.</param>
+            <returns>true on success, false if editing session has not been started, on error.</returns>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.LiveWallpaper.Preferences.SetString(System.String,System.String)">
+            <summary>
+            Sets a preference value.
+            </summary>
+            <param name="key">Preference key.</param>
+            <param name="value">Value to be written into preference.</param>
+            <returns>true on success, false if editing session has not been started, on error.</returns>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.LiveWallpaper.Preferences.DeleteKey(System.String)">
+            <summary>
+            Removes a value from the preferences.
+            </summary>
+            <param name="key">Preference key to remove.</param>
+            <returns>true on success, false if editing session has not been started, on error.</returns>
+        </member>
+        <member name="M:LostPolygon.uLiveWallpaper.LiveWallpaper.Preferences.DeleteAll">
+            <summary>
+            Removes all keys and values from the preferences. Use with caution.
+            </summary>
+            <returns>true on success, false if editing session has not been started, on error.</returns>
+        </member>
+        <member name="P:LostPolygon.uLiveWallpaper.LiveWallpaper.WallpaperOffset">
+            <summary>
+            Current wallpaper offset state.
+            </summary>
+        </member>
+        <member name="P:LostPolygon.uLiveWallpaper.LiveWallpaper.WallpaperDesiredSize">
+            <summary>
+            Current wallpaper virtual desired size, in pixels.
+            </summary>
+        </member>
+        <member name="P:LostPolygon.uLiveWallpaper.LiveWallpaper.IsVisible">
+            <summary>
+            Whether wallpaper is currently visible.
+            </summary>
+            <returns>true if wallpaper is  visible, false if it isn't, or on error.</returns>
+        </member>
+        <member name="P:LostPolygon.uLiveWallpaper.LiveWallpaper.IsPreview">
+            <summary>
+            Whether wallpaper is currently in preview mode.
+            </summary>
+            <returns>true if wallpaper is in preview mode, false if it isn't, or on error.</returns>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.LiveWallpaper.WallpaperOffsetData">
+            <summary>
+            Represents information about wallpaper offset.
+            </summary>
+        </member>
+        <member name="P:LostPolygon.uLiveWallpaper.LiveWallpaper.WallpaperOffsetData.Offset">
+            <summary>
+            Normalized offset. Values range from 0 to 1, with 0.5 being at center.
+            </summary>
+        </member>
+        <member name="P:LostPolygon.uLiveWallpaper.LiveWallpaper.WallpaperOffsetData.OffsetStep">
+            <summary>
+            Normalized offset step. Values range from 0 to 1.
+            </summary>
+            <example>
+            OffsetStep.x being equals 0.25 indicates that launcher has
+            5 screens (i.e. OffsetStep.x = 0, 0.25, 0.5, 0.75, 1.0).
+            </example>
+        </member>
+        <member name="P:LostPolygon.uLiveWallpaper.LiveWallpaper.WallpaperOffsetData.PixelOffset">
+            <summary>
+            Pixel offset. Values are in pixels.
+            </summary>
+            <remarks>
+            Gives you an indication of how much the launcher "wants" you to shift your
+            imagery based on the screen you're on.
+            </remarks>
+        </member>
+        <member name="P:LostPolygon.uLiveWallpaper.LiveWallpaper.WallpaperOffsetData.HomeScreenCount">
+            <summary>
+            Number of screens in the launcher, from 1 to N.
+            </summary>
+        </member>
+        <member name="P:LostPolygon.uLiveWallpaper.LiveWallpaper.WallpaperOffsetData.CurrentHomeScreen">
+            <summary>
+            Current launcher home screen, from 0 to HomeScreenCount - 1.
+            </summary>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.LiveWallpaper.WallpaperDesiredSizeData">
+            <summary>
+            Represents information about wallpaper virtual desired size.
+            </summary>
+        </member>
+        <member name="P:LostPolygon.uLiveWallpaper.LiveWallpaper.WallpaperDesiredSizeData.Width">
+            <summary>
+            Virtual wallpaper desired width.
+            </summary>
+        </member>
+        <member name="P:LostPolygon.uLiveWallpaper.LiveWallpaper.WallpaperDesiredSizeData.Height">
+            <summary>
+            Virtual wallpaper desired height.
+            </summary>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.LiveWallpaper.Point">
+            <summary>
+            Represents a 2D integer point.
+            </summary>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.LiveWallpaper.MultiTapDetector">
+            <summary>
+            Provides access to the multi tap detector.
+            </summary>
+        </member>
+        <member name="P:LostPolygon.uLiveWallpaper.LiveWallpaper.MultiTapDetector.NumberOfTaps">
+            <summary>
+            Number of consequent taps required to register an event.
+            </summary>
+        </member>
+        <member name="P:LostPolygon.uLiveWallpaper.LiveWallpaper.MultiTapDetector.MaxTimeBetweenTaps">
+            <summary>
+            Maximum time between taps to count them as one sequence, in milliseconds.
+            </summary>
+        </member>
+        <member name="P:LostPolygon.uLiveWallpaper.LiveWallpaper.MultiTapDetector.TapZoneRadiusRelative">
+            <summary>
+            Relative maximum distance between sequential taps.
+            For example, value of 0.5 allows sequential taps to be half a screen away from each other.
+            </summary>
+        </member>
+        <member name="T:LostPolygon.uLiveWallpaper.LiveWallpaper.UnityVersionedReflectionWrapper">
+            <summary>
+            Utilities for handling Unity API version differences.
+            </summary>
+        </member>
+    </members>
+</doc>
